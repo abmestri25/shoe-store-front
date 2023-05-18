@@ -48,15 +48,12 @@ const ProductDetails = ({ product, products }) => {
             <ProductDetailsCarousel images={image} />
           </div>
           <div className="flex-[1] py-3">
-            {/* PRODUCT TITLE */}
             <div className="text-[34px] font-semibold mb-2 leading-tight">
               {name}
             </div>
 
-            {/* PRODUCT SUBTITLE */}
             <div className="text-lg font-semibold mb-5">{subtitle}</div>
 
-            {/* PRODUCT PRICE */}
             <div className="flex items-center">
               <p className="mr-2 text-lg font-semibold">
                 MRP : &#8377; {price}
@@ -78,18 +75,14 @@ const ProductDetails = ({ product, products }) => {
               {`(Also includes all applicable duties)`}
             </div>
 
-            {/* PRODUCT SIZE RANGE START */}
             <div className="mb-10">
-              {/* HEADING START */}
               <div className="flex justify-between mb-2">
                 <div className="text-md font-semibold">Select Size</div>
                 <div className="text-md font-medium text-black/[0.5] cursor-pointer">
                   Select Guide
                 </div>
               </div>
-              {/* HEADING END */}
 
-              {/* SIZE START */}
               <div id="sizesGrid" className="grid grid-cols-3 gap-2">
                 {size.data.map((item, i) => (
                   <div
@@ -116,19 +109,14 @@ const ProductDetails = ({ product, products }) => {
                   </div>
                 ))}
               </div>
-              {/* SIZE END */}
 
-              {/* SHOW ERROR START */}
               {showError && (
                 <div className="text-red-600 mt-1">
                   Size selection is required
                 </div>
               )}
-              {/* SHOW ERROR END */}
             </div>
-            {/* PRODUCT SIZE RANGE END */}
-
-            {/* ADD TO CART BUTTON START */}
+           
             <button
               className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
               onClick={() => {
@@ -152,14 +140,7 @@ const ProductDetails = ({ product, products }) => {
             >
               Add to Cart
             </button>
-            {/* ADD TO CART BUTTON END */}
-
-            {/* WHISHLIST BUTTON START */}
-            {/* <button className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10">
-              Whishlist
-              <IoMdHeartEmpty size={20} />
-            </button> */}
-            {/* WHISHLIST BUTTON END */}
+           
 
             <div className="py-4">
               <div className="text-lg font-bold mb-5">Product Details</div>
@@ -181,7 +162,7 @@ export default ProductDetails;
 
 export async function getStaticPaths() {
   const products = await fetchDataFromApi("/api/products?populate=*");
-  const paths = products.data.map((p) => ({
+  const paths = products?.data?.map((p) => ({
     params: {
       slug: p.attributes.slug,
     },
